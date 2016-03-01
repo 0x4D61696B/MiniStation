@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Component
+        xmlns="http://www.red5studios.com/"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.red5studios.com/ ../../../schemas/component.xsd"
+    >
+
+    <Info
+        title="MiniStation"
+        author="SexySteak"
+        description=""
+        url="http://forums.firefallthegame.com/community/threads/2656821/"
+        uiVersion="1000"
+    />
+
+    <Events>
+        <Event name="ON_COMPONENT_LOAD"         bind="OnComponentLoad" />
+        <Event name="ON_LOADOUTS_CHANGED"       bind="OnLoadoutsChanged" />
+        <Event name="ON_PLAYER_READY"           bind="OnPlayerReady" />
+        <Event name="ON_TERMINAL_AUTHORIZED"    bind="OnTerminalAuthorized" />
+    </Events>
+
+    <BluePrints>
+        <Blueprint name="MainBackDrop">
+            <Border dimensions="dock: fill" class="PanelBackDrop" />
+        </Blueprint>
+
+        <BluePrint name="FramesGroup" instantiable="true">
+            <Text name="Archtype" dimensions="left: 0; width: 100%; top: 0; height: 24" style="halign: left; valign: center; font: Demi_11" />
+            <Text name="tooltip" dimensions="left: 0; width: 100%; top: 0; height: 24" style="halign: right; valign: center; font: Demi_11; color: DD8822; alpha: 0" />
+            <StillArt dimensions="left: 0; width: 100%; top: 22; height: 1" style="texture: colors; region: white; tint: FFFFFF; alpha: 0.15" />
+            <Group name="Buttons" dimensions="left: 0; right: 100%-8; top: 30; height: 48" />
+        </BluePrint>
+
+        <BluePrint name="Button" instantiable="true">
+            <Border name="plate" dimensions="dock: fill" style="tint: #50575D" class="ButtonSolid" />
+            <Border name="bar" dimensions="left:0; right: 0%; height: 100%" style="tint: #FFFFFF; alpha: 0.15; visible: false;" class="ButtonSolid" />
+            <Border name="border" dimensions="dock: fill" style="tint: #50575D" class="ButtonBorder" />
+            <Border name="fade" dimensions="dock: fill" style="tint: #1C2023" class="ButtonFade" style="alpha: 0.8" />
+            <Icon name="icon" dimensions="center-x: 50%; center-y: 50%; height: 24; width: 24" style="fixed-bounds: true" />
+            <Text name="level" dimensions="dock: fill" style="halign: right; valign: bottom; font: Demi_8; alpha: 0.8" />
+            <FocusBox name="box" dimensions="dock: fill" class="ui_button" />
+        </BluePrint>
+
+        <BluePrint name="LibButton" instantiable="true">
+            <Button name="Button" dimensions="dock: fill" style="font: Demi_10" />
+        </BluePrint>
+    </BluePrints>
+
+    <Frames>
+        <PanelFrame name="Terminal_Frame" dimensions="center-x: 50%; center-y: 50%; width: 300; height: 500" visible="false">
+            <Children>
+                <Group name="title" dimensions="top: 0; bottom: 38; center-x: 50%; width: 100%" blueprint="MainBackDrop">
+                    <Text id="TitleText" key="BATTLEFRAME_TERMINAL" dimensions="top: 0; left: 0; right: 100%-32; height: 100%" style="alpha: 0; font: Demi_15; halign: center; valign: center; drop-shadow: 0; color: PanelTitle" />
+                    <FocusBox id="Close" dimensions="right: 100%-6; center-y: 50%; width: 26; height: 26" class="ui_button">
+                        <Border class="SmallBorders" dimensions="dock: fill" style="alpha: 0.5; padding: 5" />
+                        <StillArt name="X" dimensions="center-x: 50%; center-y: 50%; width: 100%-10; height: 100%-10" style="texture: Window; region: X; tint: #B82F06; eatsmice: false" />
+                        <Events>
+                            <OnMouseDown bind="OnClose" />
+                        </Events>
+                    </FocusBox>
+                </Group>
+
+                <Group id="Body" dimensions="top: 42; bottom: 100%; width: 100%" blueprint="MainBackDrop" />
+            </Children>
+
+            <OnEscape bind="OnEscape" />
+        </PanelFrame>
+
+        <PanelFrame name="Keybinds_Frame" dimensions="center-x: 50%; center-y: 50%; width: 300; height: 500" visible="false">
+            <Children>
+                <Group name="Keybinds_Title" dimensions="top: 0; bottom: 38; center-x: 50%; width: 100%" blueprint="MainBackDrop">
+                    <Text id="Keybinds_TitleText" key="{MiniStation Keybinds}" dimensions="top: 0; left: 0; right: 100%-32; height: 100%" style="alpha: 0; font: Demi_15; halign: center; valign: center; drop-shadow: 0; color: PanelTitle" />
+                    <FocusBox id="Keybinds_Close" dimensions="right: 100%-6; center-y: 50%; width: 26; height: 26" class="ui_button">
+                        <Border class="SmallBorders" dimensions="dock: fill" style="alpha: 0.5; padding: 5" />
+                        <StillArt name="Keybinds_X" dimensions="center-x: 50%; center-y: 50%; width: 100%-10; height: 100%-10" style="texture: Window; region: X; tint: #B82F06; eatsmice: false" />
+                        <Events>
+                            <OnMouseDown bind="OnClose" />
+                        </Events>
+                    </FocusBox>
+                </Group>
+
+                <Group id="Keybinds_Body" dimensions="top: 42; bottom: 100%; width: 100%" blueprint="MainBackDrop">
+                    <KeyCatcher id="KeyCatch" dimensions="dock: fill" style="eatsmice: false" />
+                </Group>
+            </Children>
+
+            <OnEscape bind="OnEscapeKeybinds" />
+        </PanelFrame>
+
+        <PanelFrame name="FosterFrame" dimensions="top: 0; left: 0; width: 100%; height: 40" visible="false" />
+    </Frames>
+</Component>
