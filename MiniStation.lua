@@ -89,7 +89,6 @@ local c_FrameInfo = {
         Raptor = {id = 3, icon = 231528}
     }
 }
-local c_KeybindsMax = 16
 local c_SystemKeybindGroups = {
     "Combat",
     "Interface",
